@@ -13,7 +13,7 @@ import java.util.*;
 
 import static FilesReaders.Reads_excel_from_cloud.carDispatches;
 
-public class FileCARDispatchesRead_csv {
+public class ReadFromCsv {
     private static final Logger LOG = LogManager.getLogger();
     public static Map<String, FileCARDispatches> readFileCARDispatches(String FILE_PATH) throws FileNotFoundException {
         Map<String, FileCARDispatches> CarDispatchesMAP = new HashMap<>();
