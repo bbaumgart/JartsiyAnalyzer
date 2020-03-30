@@ -1,7 +1,6 @@
 package FilesReaders;
 
 import FILES.*;
-
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static Tools.MySql.Operations.getConnection;
+import static MySql.Operations.getConnection;
 
 public class Reads_excel_from_cloud {
 
@@ -23,10 +22,6 @@ public class Reads_excel_from_cloud {
     public static final String carDispatches = oneDrivePath + "\\CAR Dispatches\\";
     public static final String DellCarHoldDays = oneDrivePath + "\\Dell CAR Hold days\\";
     public static final String pulsReport = oneDrivePath + "\\Out Reports\\DellCarPuls\\";
-
-//    public static Map<String, FileOCB> EMEA_DA_OCB() throws IOException, ParseException {
-//        return FileOCBread_excel.NewFileOCBreadFromExcel("RAPORTY\\EMEA_DA_OCB.xlsx");
-//    }
 
     public static Map<String, FileOwnerMatrix> OwneMatrix() throws SQLException {
         Map<String, FileOwnerMatrix> OwneMatrix = new HashMap<>();

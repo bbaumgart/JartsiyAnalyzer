@@ -28,6 +28,18 @@ public class DailyDellCARPuls {
     public static AwaitingPartsDpaStatus awaitingPartsDpaStatus = new AwaitingPartsDpaStatus();
     public static LocalDate today = LocalDate.now();
 
+    public static void runDailyPulsList() throws ParseException, IOException {
+        DailyDellCARPuls.createListToDailyDellCARPulsMap();
+        DailyDellCARPuls.addWipToListToDailyDellCARPulsMap();
+        DailyDellCARPuls.addWiToListToDailyDellCARPulsMap();
+        DailyDellCARPuls.setBasicCarFunctionsToListToDailyDellCARPulsMap();
+        DailyDellCARPuls.setAwpStatusFromCdmv();
+        DailyDellCARPuls.setHistoricStatus();
+        DailyDellCARPuls.setAgingPerStep();
+        DailyDellCARPuls.agingCalculation();
+        DailyDellCARPuls.setHoldDaysTotal();
+    }
+
     public static void createListToDailyDellCARPulsMap() {
         for (FileDellCarReport dcr : CarMap.values()
         ) {
@@ -101,15 +113,6 @@ public class DailyDellCARPuls {
                 StatusColumn.setLocation(OwnerMatrixMap.get(StatusColumn.getActivity_Creator_Group() + StatusColumn.getWarranty2()).getLocation());
             }
         }
-    }
-
-    public static void mapSize() {
-        LOG.info("CarMap = " + CarMap.size());
-        LOG.info("WipMap = " + WipMap.size());
-        LOG.info("WiMap = " + WiMap.size());
-        LOG.info("DcrOcbWipValuesMap = " + listToDailyDellCARPulsMap.size());
-        LOG.info("OwnerMatrixMap = " + OwnerMatrixMap.size());
-        LOG.info("CARDispatchesMap = " + CarDispatchesMap.size());
     }
 
     public static void setAwpStatusFromCdmv() throws IOException, ParseException {
