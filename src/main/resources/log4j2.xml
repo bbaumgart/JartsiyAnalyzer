@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MMM-dd hh:mm:ss a } %level %c - %m %n"/>
+        </Console>
+        <JDBC name="MySQLDatabase" tableName="DELL_CAR_PULS_LOGS">
+            <ConnectionFactory
+                    class="loger.ConnectionFactory" method="getConnection"/>
+            <Column name="LOG_ID" pattern="%u"/>
+            <Column name="ENTRY_DATE" isEventTimestamp="true"/>
+            <Column name="LOGGER" pattern="%logger"/>
+            <Column name="LOG_LEVEL" pattern="%level"/>
+            <Column name="MESSAGE" pattern="%m"/>
+            <Column name="EXCEPTION" pattern="%throwable "/>
+        </JDBC>
+        <SMTP name="Mail" subject="DellCarPuls LOG.error"
+              to="bartosz.baumgart@ivytech.com"
+              cc="oleksiy.mysko@ivytech.com"
+              from="dell.Automat@ivytech.com"
+              smtpHost="10.106.8.29"
+              smtpPort="22"
+              bufferSize="50">
+        </SMTP>
+    </Appenders>
+
+    <Loggers>
+        <Logger name="loger" level="debug" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="MySQLDatabase"/>
+        </Logger>
+
+        <Root level="trace">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="MySQLDatabase"/>
+            <AppenderRef ref="Mail"/>
+        </Root>
+    </Loggers>
+
+</Configuration>
